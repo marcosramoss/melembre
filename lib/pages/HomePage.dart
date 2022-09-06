@@ -58,9 +58,17 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
+  // removerTodas() {
+  //   setState(() {
+  //     listaDeTarefas = [];
+  //   });
+  // }
+
   @override
   void initState() {
     super.initState();
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(systemNavigationBarColor: Colors.deepPurple[50]));
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     tarefaRepository.lerListaDeTarefas().then((value) {
       setState(() {
@@ -73,6 +81,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // actions: [
+        //   TextButton(
+        //     onPressed: () {},
+        //     child: const Text(
+        //       'Limpar',
+        //       style: TextStyle(color: Colors.white),
+        //     ),
+        //   )
+        // ],
         title: const Text('Melembre'),
       ),
       backgroundColor: Colors.deepPurple[50],
@@ -80,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Por enquanto não há tarefas no momento. ',
+                Text('Sem tarefas no momento. ',
                     style:
                         TextStyle(fontSize: 17, color: Colors.deepPurple[900])),
                 Image.asset('images/sem_notas.png'),

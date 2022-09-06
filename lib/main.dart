@@ -25,11 +25,10 @@ class MeLembreApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-      initialRoute: '/splash',
+      home: const SplashPage(),
       routes: {
         '/splash': (_) => const SplashPage(),
-        'home': (_) => const HomePage(),
+        '/home': (_) => const HomePage(),
       },
     );
   }
