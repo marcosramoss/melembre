@@ -23,13 +23,14 @@ class _TarefaItemState extends State<TarefaItem> {
     return Padding(
       padding: const EdgeInsets.only(left: 14, right: 14, top: 10),
       child: Material(
-        elevation: 2.0,
+        elevation: 6.0,
         borderRadius: BorderRadius.circular(8),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: selecionada.contains(widget.tarefa)
-                ? Colors.white70
+                ? Colors.green.shade50
                 : Colors.white,
             border: Border.all(
                 width: 1,

@@ -4,11 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:melembre/pages/splash_page.dart';
 
 main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ),
-  );
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MeLembreApp());
 }
 
@@ -19,6 +18,7 @@ class MeLembreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Colors.deepPurpleAccent[400],
           secondary: Colors.deepPurpleAccent[400],

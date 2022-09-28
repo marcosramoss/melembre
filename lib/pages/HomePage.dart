@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:melembre/components/tarefa_item.dart';
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
         data: DateTime.now(),
       );
       listaDeTarefas.add(novaTarefa);
+      tarefaController.clear();
     });
     tarefaController.clear();
     tarefaRepository.salvarListaDeTarefas(listaDeTarefas);
@@ -58,12 +60,6 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  // removerTodas() {
-  //   setState(() {
-  //     listaDeTarefas = [];
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -81,15 +77,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   TextButton(
-        //     onPressed: () {},
-        //     child: const Text(
-        //       'Limpar',
-        //       style: TextStyle(color: Colors.white),
-        //     ),
-        //   )
-        // ],
         title: const Text('Melembre'),
       ),
       backgroundColor: Colors.deepPurple[50],
@@ -97,14 +84,74 @@ class _HomePageState extends State<HomePage> {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Sem tarefas no momento. ',
-                    style:
-                        TextStyle(fontSize: 17, color: Colors.deepPurple[900])),
+                Text('Sem lembretes no momento. ',
+                    style: TextStyle(
+                      fontFamily: 'DancingScript',
+                      fontSize: 30,
+                      color: Colors.deepPurple[900],
+                    )),
                 Image.asset('images/sem_notas.png'),
               ],
             )
           : ListView(
               children: [
+                MaterialBanner(
+                  content: Row(
+                    children: [
+                      const Text('Lembretes'),
+                      Chip(
+                        backgroundColor: Colors.deepPurple.shade100,
+                        label: Text('${listaDeTarefas.length}'),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Apagar tudo?'),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(
+                                        'Deseja apagar todos os seus lembretes?'),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          child: const Text('Não'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              listaDeTarefas.clear();
+                                            });
+                                            Navigator.of(context).pop();
+                                            tarefaRepository
+                                                .salvarListaDeTarefas(
+                                                    listaDeTarefas);
+                                          },
+                                          child: const Text(
+                                            'Limpar',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Text('Limpar'))
+                  ],
+                ),
                 for (Tarefa tarefa in listaDeTarefas)
                   TarefaItem(
                     tarefa: tarefa,
@@ -118,7 +165,7 @@ class _HomePageState extends State<HomePage> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Me lembre de ...'),
+              title: const Text('Me lembre de...'),
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
