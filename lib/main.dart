@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melembre/pages/HomePage.dart';
 import 'package:flutter/services.dart';
 import 'package:melembre/pages/splash_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -17,6 +18,11 @@ class MeLembreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('pt', 'BR')],
       theme: ThemeData(
         fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSwatch().copyWith(

@@ -15,14 +15,14 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(seconds: 1)).then(
       (_) => Navigator.of(context).pushReplacementNamed('/home'),
     );
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xff5851CB)));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.deepPurple.shade50));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff5851CB),
+      backgroundColor: Colors.deepPurple.shade50,
       body: Center(child: Image.asset('images/icon_splash.png', scale: 1.5)),
     );
   }

@@ -50,7 +50,8 @@ class _TarefaItemState extends State<TarefaItem> {
               ),
             ),
             subtitle: Text(
-              DateFormat('dd/MM/yyyy - HH:mm').format(widget.tarefa.data),
+              DateFormat('d MMMM y - HH:mm', 'pt-BR')
+                  .format(widget.tarefa.data),
               style: TextStyle(color: Colors.deepPurple[200]),
             ),
             trailing: selecionada.contains(widget.tarefa)
@@ -69,20 +70,28 @@ class _TarefaItemState extends State<TarefaItem> {
                   )
                 : const Text(''),
             leading: selecionada.contains(widget.tarefa)
-                ? CircleAvatar(
-                    backgroundColor: Colors.green[100],
-                    child: Icon(
-                      Icons.check_rounded,
-                      color: Colors.green[400],
-                      size: 20,
+                ? Material(
+                    elevation: 6,
+                    borderRadius: BorderRadius.circular(50),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.green[100],
+                      child: Icon(
+                        Icons.check_rounded,
+                        color: Colors.green[400],
+                        size: 20,
+                      ),
                     ),
                   )
-                : CircleAvatar(
-                    backgroundColor: Colors.deepPurple[50],
-                    child: const Text(
-                      '···',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                : Material(
+                    elevation: 6,
+                    borderRadius: BorderRadius.circular(50),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.deepPurple[50],
+                      child: const Text(
+                        '···',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
             selected: selecionada.contains(widget.tarefa),

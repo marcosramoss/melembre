@@ -117,28 +117,49 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Text(
-                                        'Deseja apagar todos os seus lembretes?'),
+                                      'Deseja apagar todos os seus lembretes?',
+                                    ),
+                                    const SizedBox(height: 50),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.of(context).pop(),
-                                          child: const Text('Não'),
+                                        Container(
+                                          height: 35,
+                                          width: 70,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              color:
+                                                  Colors.deepPurple.shade100),
+                                          child: TextButton(
+                                            onPressed: () =>
+                                                Navigator.of(context).pop(),
+                                            child: const Text('Não'),
+                                          ),
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              listaDeTarefas.clear();
-                                            });
-                                            Navigator.of(context).pop();
-                                            tarefaRepository
-                                                .salvarListaDeTarefas(
-                                                    listaDeTarefas);
-                                          },
-                                          child: const Text(
-                                            'Limpar',
-                                            style: TextStyle(color: Colors.red),
+                                        const SizedBox(width: 15),
+                                        Container(
+                                          height: 35,
+                                          width: 85,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              color: Colors.red.shade100),
+                                          child: TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                listaDeTarefas.clear();
+                                              });
+                                              Navigator.of(context).pop();
+                                              tarefaRepository
+                                                  .salvarListaDeTarefas(
+                                                      listaDeTarefas);
+                                            },
+                                            child: const Text(
+                                              'Limpar',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
                                           ),
                                         ),
                                       ],
